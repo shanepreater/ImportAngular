@@ -1,0 +1,3 @@
+<ul class="nav nav-stacked nav-pills" ng-repeat="navLink in controller.navLinks">
+	<li ng-class="{active: controller.isActivePage(navLink.pageName)}"><a href ng-click="controller.setActivePage(navLink.pageName)">{{navLink.pageTitle}}</a></li>
+</ul>
