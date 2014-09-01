@@ -1,16 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>importer-web</artifactId>
-    <parent>
-        <groupId>com.onevision.angular</groupId>
-        <version>1.0-SNAPSHOT</version>
-        <artifactId>importer</artifactId>
-        <relativePath>..</relativePath>
-    </parent>
-    <packaging>war</packaging>
+	<artifactId>importer-web</artifactId>
+	<parent>
+		<groupId>com.onevision.angular</groupId>
+		<version>1.0-SNAPSHOT</version>
+		<artifactId>importer</artifactId>
+		<relativePath>..</relativePath>
+	</parent>
+	<packaging>war</packaging>
+	<name>importer-web</name>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<resource>	
+							<directory>${project.build.directory}/resources/css</directory>
+							<targetPath>/css</targetPath>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<configuration>
 
-    <name>importer-web</name>
-
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jasig.maven</groupId>
+				<artifactId>sass-maven-plugin</artifactId>
+				<configuration>
+					<sassSourceDirectory>src/main/scss</sassSourceDirectory>
+					<destination>${project.build.directory}/resources/css</destination>
+				</configuration>
+				<executions>
+					<execution>
+						<id>generate-css</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>update-stylesheets</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
