@@ -1,4 +1,5 @@
 $footerHeight: 30px;
+$activeColor: #428bca;
 
 body {
   /* Margin bottom by footer height */
@@ -12,4 +13,9 @@ body {
   padding-right: 15px;
   /* Set the fixed height of the footer here */
   height: $footerHeight;
+}
+
+.table-hover>tbody>tr:hover>td {
+	background-color: $activeColor;
+	color: white;
 }

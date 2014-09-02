@@ -1,7 +1,6 @@
 body {
   /* Margin bottom by footer height */
   margin-bottom: 30px;
-  height: 100%;
 }
 
 #footer {
@@ -11,4 +10,9 @@ body {
   padding-right: 15px;
   /* Set the fixed height of the footer here */
   height: 30px;
+}
+
+.table-hover > tbody > tr:hover > td {
+  background-color: #428bca;
+  color: white;
 }
