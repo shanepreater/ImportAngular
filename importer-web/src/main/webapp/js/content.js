@@ -1,5 +1,5 @@
 (function() {
-	var app = angular.module("content", ["myImports"]);
+	var app = angular.module("content", ["myImports", "activities"]);
 	
 	var pageController = ['$location', '$scope', '$log', function($location, $scope, $log){
 		var scopedThis = this;

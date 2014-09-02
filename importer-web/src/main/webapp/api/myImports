@@ -3,30 +3,35 @@
 		"jobId" : "ABCD-EFGH-IJKL-MNOP",
 		"description" : "Simple import to get the system checks started",
 		"date" : "2014-09-03T18:25:43.511Z",
-		"status" : "DOWNLOADABLE" 
+		"status" : "DOWNLOADABLE",
+		"importer": "me" 
 	},
 	{
 		"jobId" : "DODG-YIMP-ORTA-LARM",
 		"description" : "Interesting import which looks suspicious",
 		"date" : "2014-09-01T11:11:43.511Z",
-		"status" : "MALWARE"
+		"status" : "MALWARE",
+		"importer": "me" 
 	},
 	{
 		"jobId" : "1234-5678-ABCD-EFGH",
 		"description" : "Simplified data from some random",
 		"date" : "2014-08-30T12:25:43.511Z",
-		"status" : "IN_PROGRESS"
+		"status" : "IN_PROGRESS",
+		"importer": "me" 
 	},
 	{
 		"jobId" : "ERRO-REXA-MPLE-JOBS",
 		"description" : "Interesting error example which breaks the whole system",
 		"date" : "2014-09-03T21:05:09.511Z",
-		"status" : "ERROR"
+		"status" : "ERROR",
+		"importer": "me" 
 	},
 	{
 		"jobId" : "2468-1357-GOOD-JOB1",
 		"description" : "Extra details for the upcoming open source project details",
 		"date" : "2014-09-03T20:20:20.511Z",
-		"status" : "IN_PROGRESS"
+		"status" : "IN_PROGRESS",
+		"importer": "me" 
 	}
 ]

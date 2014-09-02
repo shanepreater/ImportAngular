@@ -25,4 +25,12 @@
 		$http.get("api/myImports").success(importsHelper.importSummaryLoader(this));
 		$log.info("Loaded my import details");
 	}]);
+	
+	//Activities controller
+	var activities = angular.module("activities", []);
+	
+	activities.controller("ActivitiesController", ['$http', '$log', function($http, $log) {
+		$http.get("api/activities").success(importsHelper.importSummaryLoader(this));
+		$log.info("Loaded activity details");
+	}]);
 })();
