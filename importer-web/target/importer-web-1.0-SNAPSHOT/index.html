@@ -31,6 +31,11 @@
    <script src="js/importer.js"></script>
    <script src="js/navigation.js"></script>
    <script src="js/footer.js"></script>
+   <script src="js/content.js"></script>
+   
+   <!-- Add the javascript for each "page" -->
+   <script src="js/import-details.js"></script>
+   
   </head>
   <body ng-app="importer">
   	<div class="container-fluid">
@@ -40,9 +45,11 @@
 	  	<div id="body">
 	  		<div class="row">
 	  			<div class="col-md-10">
-	  				<div id="content">
-	  					<h2>This is the main content section</h2>
-	  					<p>This is the main content area of the template</p>
+	  				<div id="content" ng-controller = "PageController as pageCtrl" >
+	  					<div ng-include="pageCtrl.url">
+	  						<h2>This is the main content section</h2>
+	  						<p>This is the main content area of the template</p>
+	  					</div>
 	  				</div>
 	  			</div>
 	  			<div class="col-md-2">

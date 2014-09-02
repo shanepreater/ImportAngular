@@ -1,0 +1,23 @@
+<div ng-controller="MyImportsController as myImportsCtrl">
+<h2>My Imports</h2>
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Job Id</th>
+				<th>Description</th>
+				<th>Status</th>
+				<th>Import Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="importJob in myImportsCtrl.imports">
+				<td>{{importJob.jobId}}</td>
+				<td>{{importJob.description}}</td>
+				<td ng-class="importJob.statusClass">
+					<span class="sr-only">{{importJob.status}}</span>
+				</td>
+				<td>{{importJob.date | date}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
