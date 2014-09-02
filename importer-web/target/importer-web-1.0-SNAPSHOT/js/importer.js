@@ -1,3 +1,3 @@
 (function(){
-	var app = angular.module("importer", ["navigation"]);
+	var app = angular.module("importer", ["footer", "navigation"]);
 })();

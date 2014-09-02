@@ -26,26 +26,21 @@
 			
 			//Now update the page with it.
 			scopedThis.setActivePage(activePage.pageName);
-		}).error(function(data, status) {
-			$log.error("Data is shit: " + data);
-			$log.error("Status is: " + status);
 		});
 		
 		this.setActivePage = function(activePage) {
 			this.activePage = activePage;
-			$log.debug("Setting active page to " + activePage);
 			$scope.$broadcast("ACTIVE_PAGE", activePage);
 		}
 		
 		this.isActivePage = function(pageName) {
-			$log.debug("Checking if " + pageName + " matches " + this.activePage);
 			return this.activePage === pageName;
 		}
 	}];
 	
 	app.directive("navigationLinks", function() {
 		return {
-			restrict: "E",
+			restrict: "A",
 			templateUrl: "fragments/navLinks.frag.html",
 			controllerAs: "controller",
 			controller: navLinksController

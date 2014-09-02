@@ -30,43 +30,45 @@
    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.js"></script>
    <script src="js/importer.js"></script>
    <script src="js/navigation.js"></script>
+   <script src="js/footer.js"></script>
   </head>
   <body ng-app="importer">
-  	<div id="header">
-  		<h1>This is the importer header and ting!</h1>
-  	</div>
-  	<div id="body" class="container">
-  		<div class="row">
-  			<div class="col-md-9">
-  				<div id="content">
-  					<h2>This is the main content section</h2>
-  					<p>This is the main content area of the template</p>
-  				</div>
-  			</div>
-  			<div class="col-md-3">
-  				<div id="navigation">
-  					<navigation-links>
-  					</navigation-links>
-  				</div>
-  			</div>
-  		</div>
-  	</div>
-  	
-  	<div class="container">
-	  	<div id="footer">
-		  	<div class="row">
-		  		<div class="col-md-5">
-			  		<div id="copyright">
-			  			<p>&copy;Shane Preater 2014</p>
-			  		</div>
-		  		</div>
-		  		<div class="col-md-5">
-		  			<div id="version" class="text-right">
-		  				<p>1.0-SNAPSHOT (DEV)</p>
-		  			</div>
-		  		</div>
-		  	</div>
+  	<div class="container-fluid">
+	  	<div id="header">
+	  		<h1>This is the importer header and ting!</h1>
 	  	</div>
-	  </div>
+	  	<div id="body">
+	  		<div class="row">
+	  			<div class="col-md-10">
+	  				<div id="content">
+	  					<h2>This is the main content section</h2>
+	  					<p>This is the main content area of the template</p>
+	  				</div>
+	  			</div>
+	  			<div class="col-md-2">
+	  				<div id="navigation" navigation-links>
+	  					<!-- Is this replaced?. YES! -->
+	  					<ul>
+	  						<li>I am a dummy data part</li>
+	  					</ul>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+	  	<div id="footer" ng-controller="FooterController as footerCtrl">
+			<div class="row">
+				<div class="col-md-10">
+					<div id="copyright">
+						<p>&copy;One Vision 2014</p>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div id="version" class="text-right">
+						<p>{{footerCtrl.getVersion()}} (<strong>{{footerCtrl.environment}}</strong>)</p>
+					</div>
+				</div>
+			</div>
+		</div>
+  	</div>
   </body>
 </html>
