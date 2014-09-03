@@ -34,17 +34,15 @@
 				scopedThis.sortField = fieldName;
 				scopedThis.sortAscending = true;
 			}
-			scopedThis.sortDescription = buildSortDescription();
 		};
 		
-		this.buildSortDescription = function() {
-			var string = "Sorting on " + fieldName;
-			if(scopedThis.sortAscending) {
-				string += " ascending";
-			} else {
-				string += " descending";
+		this.getSortDescription = function(fieldName) {
+			if(fieldName === scopedThis.sortField) {
+				if(scopedThis.sortAscending) {
+					return "(sort descending)";
+				}
 			}
-			return string;
+			return "(sort ascending)";
 		};
 		
 		this.getSortClasses = function(fieldName) {

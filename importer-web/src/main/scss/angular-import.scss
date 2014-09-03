@@ -69,3 +69,9 @@ body {
 		@include highlight;
 	}
 }
+
+form {
+	input {
+		@include roundedCorners(4px);
+	}
+}
