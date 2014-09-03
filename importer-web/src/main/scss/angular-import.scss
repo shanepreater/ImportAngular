@@ -1,21 +1,61 @@
 $footerHeight: 30px;
 $activeColor: #428bca;
 
+@mixin highlight {
+	background-color: $activeColor;
+	color: white;
+}
+
+@mixin roundedCorners($amount) {
+	-moz-border-radius: $amount;
+	-webkit-border-radius: $amount;
+	-khtml-border-radius: $amount; 
+	//CSS3 support
+	border-radius: $amount; /* future proofing */
+}
+
+html {
+	height: 100%;
+}
+
 body {
   /* Margin bottom by footer height */
+  height: 100%;
+  
+  //Define the holder div which is the first (and only) div in the body.
+  .container,.container-fluid {
+  	min-height: 100%;
+  	position: relative;
+  }
+}
+
+#main-area {
   margin-bottom: $footerHeight;
 }
 
 #footer {
-  position: absolute;
-  bottom: 0;
-  width: 98%;
-  padding-right: 15px;
-  /* Set the fixed height of the footer here */
   height: $footerHeight;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding-right: 15px;
+  padding-left: 15px;
+  
+  .row {
+    @include roundedCorners(5px);
+    @include highlight;
+    margin: 0;
+  }
 }
 
-.table-hover>tbody>tr:hover>td {
-	background-color: $activeColor;
-	color: white;
+.table {
+	thead>tr {
+		@include highlight;
+	}
+}
+.table-hover {
+	tbody>tr:hover>td {
+		@include highlight;
+	}
 }

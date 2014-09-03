@@ -1,18 +1,46 @@
+html {
+  height: 100%;
+}
+
 body {
   /* Margin bottom by footer height */
+  height: 100%;
+}
+body .container, body .container-fluid {
+  min-height: 100%;
+  position: relative;
+}
+
+#main-area {
   margin-bottom: 30px;
 }
 
 #footer {
-  position: absolute;
-  bottom: 0;
-  width: 98%;
-  padding-right: 15px;
-  /* Set the fixed height of the footer here */
   height: 30px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+#footer .row {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  /* future proofing */
+  background-color: #428bca;
+  color: white;
+  margin: 0;
 }
 
-.table-hover > tbody > tr:hover > td {
+.table thead > tr {
+  background-color: #428bca;
+  color: white;
+}
+
+.table-hover tbody > tr:hover > td {
   background-color: #428bca;
   color: white;
 }
