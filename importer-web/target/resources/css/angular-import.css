@@ -62,3 +62,8 @@ form input {
   border-radius: 4px;
   /* future proofing */
 }
+
+.quick-search {
+  margin-top: 15px;
+  margin-left: 15px;
+}

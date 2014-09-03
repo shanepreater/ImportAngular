@@ -17,28 +17,49 @@
 			}
 		}
 	};
-
-	//My Imports controller
-	var myImports = angular.module("myImports", []);
 	
-	myImports.controller("MyImportsController", ['$http', '$log', function($http, $log) {
+	function TableHandler($scope, $location, defaultSortField, defaultSortAscending) {
 		var scopedThis = this;
 		
+		this.filterText = "";
+		
+		//Allow the sort fields to be acquired from the location service.
+		this.updateSortDetails = function() {
+			var currentSort = scopedThis.getSortObject();
+			scopedThis.sortField = currentSort.sortField;
+			scopedThis.sortAscending = currentSort.sortAscending;
+		};
 		this.toggleSort = function(fieldName) {
-			var currentFieldName = scopedThis.sortField;
+			var currentSort = scopedThis.getSortObject();
+			if(!currentSort) {
+				currentSort = {};
+			}
+			var currentFieldName = currentSort.sortField;
 			if(fieldName === currentFieldName) {
 				//Invert the selection.
-				scopedThis.sortAscending = !scopedThis.sortAscending;
+				currentSort.sortAscending = !currentSort.sortAscending;
 			} else {
 				//set this field and mark it ascending.
-				scopedThis.sortField = fieldName;
-				scopedThis.sortAscending = true;
+				currentSort.sortField = fieldName;
+				currentSort.sortAscending = true;
 			}
+			
+			$location.search(currentSort);
 		};
 		
+		this.getSortObject = function() {
+			var currentSort = $location.search();
+			if(!currentSort.sortField) {
+				currentSort.sortField = defaultSortField;
+				currentSort.sortAscending = defaultSortAscending;
+			}
+			return currentSort;
+		}
+		
 		this.getSortDescription = function(fieldName) {
-			if(fieldName === scopedThis.sortField) {
-				if(scopedThis.sortAscending) {
+			var currentSort = scopedThis.getSortObject();
+			if(fieldName === currentSort.sortField) {
+				if(!currentSort.sortAscending) {
 					return "(sort descending)";
 				}
 			}
@@ -47,27 +68,41 @@
 		
 		this.getSortClasses = function(fieldName) {
 			var classes = ["glyphicon"];
-			var currentFieldName = scopedThis.sortField;
-			var currentAscending = scopedThis.sortAscending;
+			var currentSort = scopedThis.getSortObject();
+			var currentFieldName = currentSort.sortField;
+			var currentAscending = currentSort.sortAscending;
 			if(fieldName === currentFieldName) {
 				if(currentAscending) {
-					classes.push("glyphicon-chevron-up");
-				} else {
 					classes.push("glyphicon-chevron-down");
+				} else {
+					classes.push("glyphicon-chevron-up");
 				}
 			} else {
-				classes.push("glyphicon-chevron-up", "text-muted");
+				classes.push("glyphicon-chevron-down", "text-muted");
 			}
 			return classes;
 		}
 		
+		//Add the handler to respond to changes in the location service.
+		var unbindHandler = $scope.$on("$locationChangeSuccess", this.updateSortDetails);
+		
+		//Don't forget to let it get destroyed.
+		$scope.$on("$destroy", unbindHandler);
+	}
+
+	//My Imports controller
+	var myImports = angular.module("myImports", []);
+	
+	myImports.controller("MyImportsController", ['$http', '$log', '$location', '$scope', function($http, $log , $location, $scope) {
+		var scopedThis = this;
+		
+		this.tableHandler = new TableHandler($scope, $location, "jobId", true);
+		
 		//Get the data
 		$http.get("api/myImports").success(function(data) {
 			importsHelper.importSummaryLoader(scopedThis)(data);
-			//Set the default sort order.
-			scopedThis.toggleSort("jobId");
+			scopedThis.tableHandler.updateSortDetails();
 		});
-		$log.info("Loaded my import details");
 	}]);
 	
 	//Activities controller

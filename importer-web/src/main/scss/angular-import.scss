@@ -1,5 +1,6 @@
 $footerHeight: 30px;
 $activeColor: #428bca;
+$standardMargin: 15px;
 
 @mixin highlight {
 	background-color: $activeColor;
@@ -39,8 +40,8 @@ body {
   position: absolute;
   left: 0;
   bottom: 0;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: $standardMargin;
+  padding-left: $standardMargin;
   
   .row {
     @include roundedCorners(5px);
@@ -74,4 +75,9 @@ form {
 	input {
 		@include roundedCorners(4px);
 	}
+}
+
+.quick-search {
+	margin-top: $standardMargin;
+	margin-left: $standardMargin;
 }
