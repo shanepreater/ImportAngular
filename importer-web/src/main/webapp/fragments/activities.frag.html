@@ -1,17 +1,25 @@
 <div ng-controller="ActivitiesController as activitiesCtrl">
 	<h2>Activities</h2>
-	<table class="table table-striped table-hover">
+	<div class="quick-search">
+		<Form class="form-inline" role="form">
+			<div class="form-group">
+				<label for="filterText">Filter by:</label>
+				<input type="text" ng-model="activitiesCtrl.tableHandler.filterText" id="filterText"/>
+			</div>
+		</Form>
+	</div>
+	<table class="table table-striped table-hover table-bordered">
 		<thead>
 			<tr>
-				<th>Job Id</th>
-				<th>Description</th>
-				<th>Status</th>
-				<th>Import Date</th>
-				<th>Importer</th>
+				<th>Job Id <a href ng-click="activitiesCtrl.tableHandler.toggleSort('jobId')"><span ng-class="activitiesCtrl.tableHandler.getSortClasses('jobId')"><span class="sr-only">{{activitiesCtrl.tableHandler.getSortDescription("jobId")}}</span></span></a></th>
+				<th>Description <a href ng-click="activitiesCtrl.tableHandler.toggleSort('description')"><span ng-class="activitiesCtrl.tableHandler.getSortClasses('description')"><span class="sr-only">{{activitiesCtrl.tableHandler.getSortDescription("description")}}</span></span></a></th>
+				<th>Status <a href ng-click="activitiesCtrl.tableHandler.toggleSort('statusOrder')"><span ng-class="activitiesCtrl.tableHandler.getSortClasses('statusOrder')"><span class="sr-only">{{activitiesCtrl.tableHandler.getSortDescription("statusOrder")}}</span></span></a></th>
+				<th>Import Date <a href ng-click="activitiesCtrl.tableHandler.toggleSort('date')"><span ng-class="activitiesCtrl.tableHandler.getSortClasses('date')"><span class="sr-only">{{activitiesCtrl.tableHandler.getSortDescription("date")}}</span></span></a></th>
+				<th>Importer <a href ng-click="activitiesCtrl.tableHandler.toggleSort('importer')"><span ng-class="activitiesCtrl.tableHandler.getSortClasses('importer')"><span class="sr-only">{{activitiesCtrl.tableHandler.getSortDescription("importer")}}</span></span></a></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="importJob in activitiesCtrl.imports">
+			<tr ng-repeat="importJob in activitiesCtrl.imports | filter:activitiesCtrl.tableHandler.filterText | orderBy:activitiesCtrl.tableHandler.sortField:activitiesCtrl.tableHandler.sortAscending">
 				<td>{{importJob.jobId}}</td>
 				<td>{{importJob.description}}</td>
 				<td ng-class="importJob.statusClass">

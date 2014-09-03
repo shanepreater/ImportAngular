@@ -1,19 +1,25 @@
 (function(){
 	var importsHelper = {
 		statusClassMap : {
-			"IN_PROGRESS": "in-progress",
-			"MALWARE": "malware",
-			"ERROR": "error",
-			"FAILED": "failed",
-			"DOWNLOADABLE": "downloadable"
+			"DOWNLOADABLE": ["downloadable",0],
+			"MALWARE": ["malware",1],
+			"ERROR": ["error",2],
+			"IN_PROGRESS": ["in-progress",3],
+			"FAILED": ["failed",4]
 		},
 		importSummaryLoader : function(scopedThis) {
-			return function(data) {
+			return function(data, tableHandler) {
 				data.forEach(function(item){
-					item.statusClass = importsHelper.statusClassMap[item.status];
+					var value = importsHelper.statusClassMap[item.status];
+					item.statusClass = value[0];
+					item.statusOrder = value[1];
 				});
 			
 				scopedThis.imports = data;
+				
+				if(tableHandler) {
+					tableHandler.updateSortDetails();
+				}
 			}
 		}
 	};
@@ -94,22 +100,18 @@
 	var myImports = angular.module("myImports", []);
 	
 	myImports.controller("MyImportsController", ['$http', '$log', '$location', '$scope', function($http, $log , $location, $scope) {
-		var scopedThis = this;
-		
 		this.tableHandler = new TableHandler($scope, $location, "jobId", true);
 		
 		//Get the data
-		$http.get("api/myImports").success(function(data) {
-			importsHelper.importSummaryLoader(scopedThis)(data);
-			scopedThis.tableHandler.updateSortDetails();
-		});
+		$http.get("api/myImports").success(importsHelper.importSummaryLoader(this, this.tableHandler));
 	}]);
 	
 	//Activities controller
 	var activities = angular.module("activities", []);
 	
-	activities.controller("ActivitiesController", ['$http', '$log', function($http, $log) {
-		$http.get("api/activities").success(importsHelper.importSummaryLoader(this));
-		$log.info("Loaded activity details");
+	
+	activities.controller("ActivitiesController", ['$http', '$log', '$location', '$scope', function($http, $log , $location, $scope) {
+		this.tableHandler = new TableHandler($scope, $location, "jobId", true);
+		$http.get("api/activities").success(importsHelper.importSummaryLoader(this, this.tableHandler));
 	}]);
 })();

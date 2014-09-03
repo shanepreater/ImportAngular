@@ -1,24 +1,24 @@
-<div ng-controller="MyImportsController as myImportsCtrl">
+<div ng-controller="MyImportsController as myImportsCtrl" ng-init="tableHandler = myImportsCtrl.tableHandler">
 	<h2>My Imports</h2>
 	<div class="quick-search">
 		<Form class="form-inline" role="form">
 			<div class="form-group">
 				<label for="filterText">Filter by:</label>
-				<input type="text" ng-model="myImportsCtrl.tableHandler.filterText" id="filterText"/>
+				<input type="text" ng-model="tableHandler.filterText" id="filterText"/>
 			</div>
 		</Form>
 	</div>
 	<table class="table table-striped table-hover table-bordered">
 		<thead>
 			<tr>
-				<th>Job Id <a href ng-click="myImportsCtrl.tableHandler.toggleSort('jobId')"><span ng-class="myImportsCtrl.tableHandler.getSortClasses('jobId')"><span class="sr-only">{{myImportsCtrl.tableHandler.getSortDescription("jobId")}}</span></span></a></th>
-				<th>Description <a href ng-click="myImportsCtrl.tableHandler.toggleSort('description')"><span ng-class="myImportsCtrl.tableHandler.getSortClasses('description')"><span class="sr-only">{{myImportsCtrl.tableHandler.getSortDescription("description")}}</span></span></a></th>
-				<th>Status <a href ng-click="myImportsCtrl.tableHandler.toggleSort('status')"><span ng-class="myImportsCtrl.tableHandler.getSortClasses('status')"><span class="sr-only">{{myImportsCtrl.tableHandler.getSortDescription("status")}}</span></span></a></th>
-				<th>Import Date <a href ng-click="myImportsCtrl.tableHandler.toggleSort('date')"><span ng-class="myImportsCtrl.tableHandler.getSortClasses('date')"><span class="sr-only">{{myImportsCtrl.tableHandler.getSortDescription("date")}}</span></span></a></th>
+				<th>Job Id <a href ng-click="tableHandler.toggleSort('jobId')"><span ng-class="tableHandler.getSortClasses('jobId')"><span class="sr-only">{{tableHandler.getSortDescription("jobId")}}</span></span></a></th>
+				<th>Description <a href ng-click="tableHandler.toggleSort('description')"><span ng-class="tableHandler.getSortClasses('description')"><span class="sr-only">{{tableHandler.getSortDescription("description")}}</span></span></a></th>
+				<th>Status <a href ng-click="tableHandler.toggleSort('statusOrder')"><span ng-class="tableHandler.getSortClasses('statusOrder')"><span class="sr-only">{{tableHandler.getSortDescription("statusOrder")}}</span></span></a></th>
+				<th>Import Date <a href ng-click="tableHandler.toggleSort('date')"><span ng-class="tableHandler.getSortClasses('date')"><span class="sr-only">{{tableHandler.getSortDescription("date")}}</span></span></a></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="importJob in myImportsCtrl.imports | filter:myImportsCtrl.tableHandler.filterText | orderBy:myImportsCtrl.tableHandler.sortField:myImportsCtrl.tableHandler.sortAscending">
+			<tr ng-repeat="importJob in myImportsCtrl.imports | filter:tableHandler.filterText | orderBy:tableHandler.sortField:tableHandler.sortAscending">
 				<td>{{importJob.jobId}}</td>
 				<td>{{importJob.description}}</td>
 				<td ng-class="importJob.statusClass">

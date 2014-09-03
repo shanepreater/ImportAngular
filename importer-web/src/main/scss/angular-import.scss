@@ -81,3 +81,35 @@ form {
 	margin-top: $standardMargin;
 	margin-left: $standardMargin;
 }
+
+@mixin importStatus {
+	min-width: 32px;
+	min-height: 32px;	
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.in-progress {
+	@include importStatus;
+	background-image: url("./sprites/hour-glass-icon.png");
+}
+
+.malware {
+	@include importStatus;
+	background-image: url("./sprites/burn-icon.png");
+}
+
+.error {
+	@include importStatus;
+	background-image: url("./sprites/exclamation-icon.png");
+}
+
+.failed {
+	@include importStatus;
+	background-image: url("./sprites/minus-white-icon.png");
+}
+
+.downloadable {
+	@include importStatus;
+	background-image: url("./sprites/archive-icon.png");
+}

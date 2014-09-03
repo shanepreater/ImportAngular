@@ -17,7 +17,7 @@
 		"jobId" : "1234-5678-ABCD-EFGH",
 		"description" : "Simplified data from some random",
 		"date" : "2014-08-30T12:25:43.511Z",
-		"status" : "IN_PROGRESS",
+		"status" : "FAILED",
 		"importer": "me" 
 	},
 	{

@@ -21,6 +21,7 @@
 		
 		this.setActivePage = function(activePage) {
 			$location.hash(activePage);
+			$location.search({});
 		}
 		
 		this.isActivePage = function(pageName) {
