@@ -39,6 +39,16 @@ body .container, body .container-fluid {
   background-color: #428bca;
   color: white;
 }
+.table thead > tr a {
+  background-color: #428bca;
+  color: white;
+}
+.table thead > tr a:hover {
+  color: red;
+}
+.table thead > tr a:hover .text-muted {
+  color: red;
+}
 
 .table-hover tbody > tr:hover > td {
   background-color: #428bca;

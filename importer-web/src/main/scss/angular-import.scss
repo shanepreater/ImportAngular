@@ -52,6 +52,16 @@ body {
 .table {
 	thead>tr {
 		@include highlight;
+		a {
+			@include highlight;
+		}
+		a:hover {
+			color: red;
+			.text-muted {
+				color: red;
+			}
+		}
+		
 	}
 }
 .table-hover {

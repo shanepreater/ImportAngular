@@ -22,7 +22,53 @@
 	var myImports = angular.module("myImports", []);
 	
 	myImports.controller("MyImportsController", ['$http', '$log', function($http, $log) {
-		$http.get("api/myImports").success(importsHelper.importSummaryLoader(this));
+		var scopedThis = this;
+		
+		this.toggleSort = function(fieldName) {
+			var currentFieldName = scopedThis.sortField;
+			if(fieldName === currentFieldName) {
+				//Invert the selection.
+				scopedThis.sortAscending = !scopedThis.sortAscending;
+			} else {
+				//set this field and mark it ascending.
+				scopedThis.sortField = fieldName;
+				scopedThis.sortAscending = true;
+			}
+			scopedThis.sortDescription = buildSortDescription();
+		};
+		
+		this.buildSortDescription = function() {
+			var string = "Sorting on " + fieldName;
+			if(scopedThis.sortAscending) {
+				string += " ascending";
+			} else {
+				string += " descending";
+			}
+			return string;
+		};
+		
+		this.getSortClasses = function(fieldName) {
+			var classes = ["glyphicon"];
+			var currentFieldName = scopedThis.sortField;
+			var currentAscending = scopedThis.sortAscending;
+			if(fieldName === currentFieldName) {
+				if(currentAscending) {
+					classes.push("glyphicon-chevron-up");
+				} else {
+					classes.push("glyphicon-chevron-down");
+				}
+			} else {
+				classes.push("glyphicon-chevron-up", "text-muted");
+			}
+			return classes;
+		}
+		
+		//Get the data
+		$http.get("api/myImports").success(function(data) {
+			importsHelper.importSummaryLoader(scopedThis)(data);
+			//Set the default sort order.
+			scopedThis.toggleSort("jobId");
+		});
 		$log.info("Loaded my import details");
 	}]);
 	
