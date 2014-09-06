@@ -20,7 +20,7 @@
 				<configuration>
 					<webResources>
 						<resource>	
-							<directory>${project.build.directory}/resources/css</directory>
+							<directory>src/main/css</directory>
 							<targetPath>/css</targetPath>
 						</resource>
 					</webResources>
@@ -38,7 +38,7 @@
 				<artifactId>sass-maven-plugin</artifactId>
 				<configuration>
 					<sassSourceDirectory>src/main/scss</sassSourceDirectory>
-					<destination>${project.build.directory}/resources/css</destination>
+					<destination>src/main/css</destination>
 				</configuration>
 				<executions>
 					<execution>

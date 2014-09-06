@@ -1,0 +1,42 @@
+[
+	{
+		"name" : "Malware Found",
+		"description" : "Malware has been discovered in the import",
+		"criteria": {
+			"type": "AND",
+			[
+				{
+					"property" : "MALWARE_STATUS",
+					"operation" : "contains",
+					"value" : "MALWARE_FOUND"
+				},
+				{
+					"property" : "STATUS",
+					"operation" : "contains",
+					"value" : "FINISHED"
+				}
+			]
+		},
+		"informSecurity": true
+	},
+	{
+		"name" : "Malware errors",
+		"description" : "Import was not scanned",
+		"criteria": {
+			"type": "AND",
+			[
+				{
+					"property" : "MALWARE_STATUS",
+					"operation" : "contains",
+					"value" : "ERROR_SCANNING"
+				},
+				{
+					"property" : "STATUS",
+					"operation" : "contains",
+					"value" : "FINISHED"
+				}
+			]
+		},
+		"informSecurity": true
+	}
+]

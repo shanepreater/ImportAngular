@@ -1,4 +1,24 @@
 (function(){
+
+	//My Imports controller
+	var myImports = angular.module("myImports", []);
+	
+	myImports.controller("MyImportsController", ['$http', '$log', '$location', '$scope', function($http, $log , $location, $scope) {
+		$scope.tableHandler = new TableHandler($scope, $location, "jobId", true);
+		
+		//Get the data
+		$http.get("api/myImports").success(importsHelper.importSummaryLoader($scope));
+	}]);
+	
+	//Activities controller
+	var activities = angular.module("activities", []);
+	
+	
+	activities.controller("ActivitiesController", ['$http', '$log', '$location', '$scope', function($http, $log , $location, $scope) {
+		$scope.tableHandler = new TableHandler($scope, $location, "jobId", true);
+		$http.get("api/activities").success(importsHelper.importSummaryLoader($scope));
+	}]);
+	
 	var importsHelper = {
 		statusClassMap : {
 			"DOWNLOADABLE": ["downloadable",0],
@@ -7,16 +27,17 @@
 			"IN_PROGRESS": ["in-progress",3],
 			"FAILED": ["failed",4]
 		},
-		importSummaryLoader : function(scopedThis) {
-			return function(data, tableHandler) {
+		importSummaryLoader : function($scope) {
+			return function(data) {
 				data.forEach(function(item){
 					var value = importsHelper.statusClassMap[item.status];
 					item.statusClass = value[0];
 					item.statusOrder = value[1];
 				});
 			
-				scopedThis.imports = data;
+				$scope.imports = data;
 				
+				var tableHandler = $scope.tableHandler;
 				if(tableHandler) {
 					tableHandler.updateSortDetails();
 				}
@@ -27,14 +48,11 @@
 	function TableHandler($scope, $location, defaultSortField, defaultSortAscending) {
 		var scopedThis = this;
 		
-		this.filterText = "";
-		
 		//Allow the sort fields to be acquired from the location service.
 		this.updateSortDetails = function() {
-			var currentSort = scopedThis.getSortObject();
-			scopedThis.sortField = currentSort.sortField;
-			scopedThis.sortAscending = currentSort.sortAscending;
+			$scope.currentSort = scopedThis.getSortObject();
 		};
+		
 		this.toggleSort = function(fieldName) {
 			var currentSort = scopedThis.getSortObject();
 			if(!currentSort) {
@@ -95,23 +113,4 @@
 		//Don't forget to let it get destroyed.
 		$scope.$on("$destroy", unbindHandler);
 	}
-
-	//My Imports controller
-	var myImports = angular.module("myImports", []);
-	
-	myImports.controller("MyImportsController", ['$http', '$log', '$location', '$scope', function($http, $log , $location, $scope) {
-		this.tableHandler = new TableHandler($scope, $location, "jobId", true);
-		
-		//Get the data
-		$http.get("api/myImports").success(importsHelper.importSummaryLoader(this, this.tableHandler));
-	}]);
-	
-	//Activities controller
-	var activities = angular.module("activities", []);
-	
-	
-	activities.controller("ActivitiesController", ['$http', '$log', '$location', '$scope', function($http, $log , $location, $scope) {
-		this.tableHandler = new TableHandler($scope, $location, "jobId", true);
-		$http.get("api/activities").success(importsHelper.importSummaryLoader(this, this.tableHandler));
-	}]);
 })();

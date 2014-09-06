@@ -1,0 +1,68 @@
+{
+	"JOB_ID" : {
+		"name": "Job ID",
+		"operations": [{
+			"name" : "equals",
+			"type" : "JOB_ID_EQUALS"
+		},{
+			"name" : "contains",
+			"type" : "TEXT_CONTAINS"}]
+	},
+	"IMPORTER" : {
+		"name" : "Importer",
+		"operations": [{
+			"name" : "equals",
+			"type" : "USER_EQUALS"
+		},{
+			"name" : "contains",
+			"type" : "TEXT_CONTAINS"
+		}]
+	},
+	"STATUS" : {
+		"name" : "Processing status",
+		"items" : [
+			["RECEIVED", "Received"], 
+			["CHECKING", "Checking"], 
+			["FINISHED", "Completed"], 
+			["FAILED", "Failed"]
+		],
+		"operations" : [{
+			"name" : "contains",
+			"type" : "LIST_CONTAINS",
+		},{
+			"name" : "doesn't contain",
+			"type" : "LIST_NOT_CONTAINS"
+		}]
+	},
+	"MALWARE_STATUS" : {
+		"name" : "Malware status",
+		"items" : [
+			["NONE_FOUND", "None found"],
+			["ERROR_SCANNING", "Error scanning"],
+			["MALWARE_FOUND", "Malware found"]
+		],
+		"operations" : [{
+			"name" : "contains",
+			"type" : "LIST_CONTAINS",
+		},{
+			"name" : "doesn't contain",
+			"type" : "LIST_NOT_CONTAINS"
+		}]
+	},
+	"FILE_COUNT" : {
+		"name" : "File count",
+		"operations" : [{
+			"name" : "equals",
+			"type" : "NUMBER_EQUALS"
+		},{
+			"name" : "greater than",
+			"type" : "NUMBER_GT"
+		},{
+			"name" : "less than",
+			"type" : "NUMBER_LT"
+		},{
+			"name" : "not",
+			"type" : "NUMBER_NOT"
+		}]
+	}
+}

@@ -2,30 +2,30 @@
 	var app = angular.module("navigation", []);
 	
 	//Define the controller construction function so it's not got a huge nesting headache.
-	var navLinksController = ['$location', '$http', '$log',function($location, $http, $log){
+	var navLinksController = ['$location', '$http', '$log', '$scope',function($location, $http, $log, $scope){
 		var scopedThis = this;
-		this.navLinks = [];
+		$scope.navLinks = [];
 		
 		$log.debug("Loading the nav links from the other page.");
 		$http.get("api/navLinks")
 			.success(function(data){
 				$log.info("Received the nav links: " + data);
-				scopedThis.navLinks = data;
+				$scope.navLinks = data;
 				
-				var currentHash = $location.hash();
-				$log.info("Checking for redirect on '" + currentHash + "' to get the correct base path")
-				if(!currentHash) {
-					$location.hash(scopedThis.navLinks[0].pageName).replace();
+				var current = $location.path();
+				$log.info("Checking for redirect on '" + current + "' to get the correct base path")
+				if(!current) {
+					$location.path($scope.navLinks[0].pageName).replace();
 				}
 		});
 		
 		this.setActivePage = function(activePage) {
-			$location.hash(activePage);
+			$location.path(activePage);
 			$location.search({});
 		}
 		
 		this.isActivePage = function(pageName) {
-			return $location.hash() === pageName;
+			return $location.path() === "/" + pageName;
 		}
 	}];
 	

@@ -1,5 +1,5 @@
-<div ng-controller="MyImportsController as myImportsCtrl" ng-init="tableHandler = myImportsCtrl.tableHandler">
-	<h2>My Imports</h2>
+<div ng-controller="ActivitiesController as activitiesCtrl" ng-init="tableHandler = activitiesCtrl.tableHandler">
+	<h2>Activities</h2>
 	<div class="quick-search">
 		<Form class="form-inline" role="form">
 			<div class="form-group">
@@ -15,16 +15,18 @@
 				<th>Description <a href ng-click="tableHandler.toggleSort('description')"><span ng-class="tableHandler.getSortClasses('description')"><span class="sr-only">{{tableHandler.getSortDescription("description")}}</span></span></a></th>
 				<th>Status <a href ng-click="tableHandler.toggleSort('statusOrder')"><span ng-class="tableHandler.getSortClasses('statusOrder')"><span class="sr-only">{{tableHandler.getSortDescription("statusOrder")}}</span></span></a></th>
 				<th>Import Date <a href ng-click="tableHandler.toggleSort('date')"><span ng-class="tableHandler.getSortClasses('date')"><span class="sr-only">{{tableHandler.getSortDescription("date")}}</span></span></a></th>
+				<th>Importer <a href ng-click="tableHandler.toggleSort('importer')"><span ng-class="tableHandler.getSortClasses('importer')"><span class="sr-only">{{tableHandler.getSortDescription("importer")}}</span></span></a></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="importJob in myImportsCtrl.imports | filter:tableHandler.filterText | orderBy:tableHandler.sortField:tableHandler.sortAscending">
+			<tr ng-repeat="importJob in imports | filter:tableHandler.filterText | orderBy:tableHandler.sortField:tableHandler.sortAscending">
 				<td>{{importJob.jobId}}</td>
 				<td>{{importJob.description}}</td>
 				<td ng-class="importJob.statusClass">
 					<span class="sr-only">{{importJob.status}}</span>
 				</td>
 				<td>{{importJob.date | date}}</td>
+				<td>{{importJob.importer}}</td>
 			</tr>
 		</tbody>
 	</table>
