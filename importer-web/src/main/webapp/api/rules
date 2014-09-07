@@ -1,5 +1,6 @@
 [
 	{
+		"id" : 1,
 		"name" : "Malware Found",
 		"description" : "Malware has been discovered in the import",
 		"criteria": {
@@ -20,6 +21,7 @@
 		"informSecurity": true
 	},
 	{
+		"id" : 2,
 		"name" : "Malware errors",
 		"description" : "Import was not scanned",
 		"criteria": {
