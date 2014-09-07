@@ -9,7 +9,7 @@
 		$log.debug("Loading the nav links from the other page.");
 		$http.get("api/navLinks")
 			.success(function(data){
-				$log.info("Received the nav links: " + data);
+				$log.info("Received ("+data.length+") nav links: " + data);
 				$scope.navLinks = data;
 				
 				var current = $location.path();

@@ -1,7 +1,7 @@
 [
 	{
 		"jobId" : "ABCD-EFGH-IJKL-MNOP",
-		"description" : "Simple import to get the system checks started",
+		"description" : "This is generated from the dummy servlet",
 		"date" : "2014-09-03T18:25:43.511Z",
 		"status" : "DOWNLOADABLE",
 		"importer": "me" 
