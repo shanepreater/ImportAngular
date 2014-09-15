@@ -1,57 +1,67 @@
-{
-	"JOB_ID" : {
+[
+	{
+		"id" : "JOB_ID",
 		"name": "Job ID",
-		"operations": [{
-			"name" : "equals",
-			"type" : "JOB_ID_EQUALS"
-		},{
-			"name" : "contains",
-			"type" : "TEXT_CONTAINS"}]
-	},
-	"IMPORTER" : {
+		"operations": [
+			{
+				"name" : "equals",
+				"type" : "JOB_ID_EQUALS"
+			},{
+				"name" : "contains",
+				"type" : "TEXT_CONTAINS"
+			}
+		]
+	}, {
+		"id" : "IMPORTER",
 		"name" : "Importer",
-		"operations": [{
-			"name" : "equals",
-			"type" : "USER_EQUALS"
-		},{
-			"name" : "contains",
-			"type" : "TEXT_CONTAINS"
-		}]
-	},
-	"STATUS" : {
+		"operations": [
+			{
+				"name" : "equals",
+				"type" : "USER_EQUALS"
+			},{
+				"name" : "contains",
+				"type" : "TEXT_CONTAINS"
+			}
+		]
+	}, {
+		"id" : "STATUS",
 		"name" : "Processing status",
 		"items" : [
 			["RECEIVED", "Received"], 
+			["AWAITING_PAYLOAD", "Awaiting payload"],
 			["CHECKING", "Checking"], 
 			["FINISHED", "Completed"], 
 			["FAILED", "Failed"]
 		],
-		"operations" : [{
+		"operations" : [
+		{
 			"name" : "contains",
-			"type" : "LIST_CONTAINS",
+			"type" : "LIST_CONTAINS"
 		},{
 			"name" : "doesn't contain",
 			"type" : "LIST_NOT_CONTAINS"
 		}]
-	},
-	"MALWARE_STATUS" : {
+	}, {
+		"id" : "MALWARE_STATUS",
 		"name" : "Malware status",
 		"items" : [
 			["NONE_FOUND", "None found"],
 			["ERROR_SCANNING", "Error scanning"],
 			["MALWARE_FOUND", "Malware found"]
 		],
-		"operations" : [{
+		"operations" : [
+		{
 			"name" : "contains",
-			"type" : "LIST_CONTAINS",
+			"type" : "LIST_CONTAINS"
 		},{
 			"name" : "doesn't contain",
 			"type" : "LIST_NOT_CONTAINS"
 		}]
-	},
-	"FILE_COUNT" : {
+	}, {
+		"id" : "FILE_COUNT",
 		"name" : "File count",
-		"operations" : [{
+		"operations" : [
+		{
 			"name" : "equals",
 			"type" : "NUMBER_EQUALS"
 		},{
@@ -65,4 +75,4 @@
 			"type" : "NUMBER_NOT"
 		}]
 	}
-}
+]

@@ -1,0 +1,28 @@
+<blockquote class="criteria">
+	<fieldset class="form-group form-inline">
+		<label for="{{index}}_type" class="sr-only">Type:</label>
+		<select id="{{index}}_type" class="form-control" ng-model="criteria.type" ng-attr-readonly="readOnly">
+			<option label="All must match">ALL</option>
+			<option label="Any can match">ANY</option>
+		</select>
+	</fieldset>
+	<div ng-repeat="criterion in criteria.criterion">
+		<div ng-if="criterion.type">
+			<criteria-group criteria="criterion" parent="criteria" read-only="readOnly"></criteria-group>
+		</div>
+		<div ng-if="!criterion.type">
+			<criterion criteria="criterion" parent="criteria" read-only="readOnly" id-name="{{criteria.htmlId}}_{{$index}}" on-remove="removeCriteria(criterion)"></criterion>
+		</div>
+	</div>
+	<div class="pull-right" ng-if="!readOnly">
+		<fieldset class="form-group form-inline">
+			<button type="button" class="form-control" ng-click="addGroup(criteria)">Add group</button>
+			<button type="button" class="form-control" ng-click="addCriterion(criteria)">Add criterion</button>
+			<button type="button" class="form-control" ng-click="removeCriteria(criteria)" ng-if="canDelete(parent)">
+				<span class="glyphicon glyphicon-remove"></span>
+				<span class="sr-only">Remove</span>
+			</button>
+		</fieldset>
+	</div>
+	<div class="clearfix"></div>
+</blockquote>

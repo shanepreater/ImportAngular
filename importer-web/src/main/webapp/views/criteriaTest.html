@@ -1,0 +1,104 @@
+<h2>Criteria Tester</h2>
+<form>
+	<blockquote class="criteria">
+		<fieldset class="form-group form-inline">
+			<label for="criteria[0].type" class="sr-only">Type:</label>
+			<select id="criteria[0].type" class="form-control" name="criteria.type">
+				<option selected="selected">ALL</option>
+				<option>OR</option>
+			</select>
+		</fieldset>
+		<fieldset class="form-group form-inline">
+			<label for="criteria[1].property" class="sr-only">Property:</label>
+			<select id="criteria[1].property" class="form-control" name="property">
+				<option label="Job ID">JOB_ID</option>
+				<option label="Importer" selected="selected">IMPORTER</option>
+				<option label="Processing status">STATUS</option>
+			</select>
+			<label for="criteria[1].operation" class="sr-only">Operation:</label>
+			<select id="criteria[1].operation" class="form-control" name="operation">
+				<option label="equals" selected="selected">USER_EQUALS</option>
+				<option label="contains">CONTAINS</option>
+			</select>			
+			<label for="criteria[1].value" class="sr-only">Value:</label>
+			<input class="form-group" type="text" id="criteria[1].value" name="value" value="this is another value">
+			<button class="form-control">
+				<span class="glyphicon glyphicon-remove"></span>
+				<span class="sr-only">Remove</span>
+			</button>
+		</fieldset>
+		<fieldset class="form-group form-inline">
+			<label for="criteria[2].property" class="sr-only">Property:</label>
+			<select id="criteria[2].property" class="form-control" name="property">
+				<option label="Job ID" selected="selected">JOB_ID</option>
+				<option label="Importer">IMPORTER</option>
+				<option label="Processing status">STATUS</option>
+			</select>
+			<label for="criteria[2].operation" class="sr-only">Operation:</label>
+			<select id="criteria[2].operation" class="form-control" name="operation">
+				<option label="equals">USER_EQUALS</option>
+				<option label="contains" selected="selected">CONTAINS</option>
+			</select>			
+			<label for="criteria[2].value" class="sr-only">Value:</label>
+			<input class="form-group" type="text" id="criteria[2].value" name="value" value="this is the value">
+			<button class="form-control">
+				<span class="glyphicon glyphicon-remove"></span>
+				<span class="sr-only">Remove</span>
+			</button>
+		</fieldset>
+		<blockquote class="criteria">
+			<fieldset class="form-group form-inline">
+				<label for="criteria[3].type" class="sr-only">Type:</label>
+				<select id="criteria[3].type" class="form-control" name="criteria.type">
+					<option>ALL</option>
+					<option selected="selected">OR</option>
+				</select>
+			</fieldset>
+			<fieldset class="form-group form-inline">
+				<label for="criteria[4].property" class="sr-only">Property:</label>
+				<select id="criteria[4].property" class="form-control" name="property">
+					<option label="Job ID">JOB_ID</option>
+					<option label="Importer">IMPORTER</option>
+					<option label="Processing status" selected="selected">STATUS</option>
+				</select>
+				<label for="criteria[4].operation" class="sr-only">Operation:</label>
+				<select id="criteria[4].operation" class="form-control" name="operation">
+					<option label="contains" selected="selected">LIST_CONTAINS</option>
+					<option label="doesn't contain">LIST_NOT_CONTAINS</option>
+				</select>			
+				<label for="criteria[4].value" class="sr-only">Value:</label>
+				<select class="form-group" id="criteria[4].value" name="value">
+					<option label="Received">RECEIVED</option>
+					<option label="Awaiting payload">AWAITING_PAYLOAD</option>
+					<option label="Checking" selected="selected">CHECKING</option> 
+					<option label="Completed">FINISHED</option>
+					<option label="Failed">FAILED</option>
+				</select>
+				<button class="form-control">
+					<span class="glyphicon glyphicon-remove"></span>
+					<span class="sr-only">Remove</span>
+				</button>
+			</fieldset>
+			<div class="pull-right">
+				<fieldset class="form-group form-inline">
+					<button class="form-control">Add group</button>
+					<button class="form-control">Add criterion</button><button class="form-control">
+						<span class="glyphicon glyphicon-remove"></span>
+						<span class="sr-only">Remove</span>
+					</button>
+				</fieldset>
+			</div>
+			<div class="clearfix"></div>
+		</blockquote>
+		<div class="pull-right">
+			<fieldset class="form-group form-inline">
+				<button class="form-control">Add group</button>
+				<button class="form-control">Add criterion</button><button class="form-control">
+					<span class="glyphicon glyphicon-remove"></span>
+					<span class="sr-only">Remove</span>
+				</button>
+			</fieldset>
+		</div>
+		<div class="clearfix"></div>
+	</blockquote>
+</form>

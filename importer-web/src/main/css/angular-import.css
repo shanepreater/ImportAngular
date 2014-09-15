@@ -111,6 +111,10 @@ form input {
   background-image: url("./sprites/archive-icon.png");
 }
 
+blockquote.criteria {
+  border: 5px solid #eeeeee;
+}
+
 .ng-invalid .ng-dirty {
   border-color: red;
 }

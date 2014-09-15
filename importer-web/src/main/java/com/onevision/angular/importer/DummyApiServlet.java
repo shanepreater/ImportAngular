@@ -5,13 +5,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.CopyUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,11 +35,7 @@ public class DummyApiServlet extends HttpServlet {
 
 		String requestURI = req.getRequestURI();
 		LOGGER.info("Requested resolution of '{}'", requestURI);
-
-		if (requestURI.contains("/import/")) {
-			handleImportDetailsRequest(requestURI, resp);
-		}
-
+		
 		try (InputStream inputStream = findCorrectStream(requestURI)) {
 			if (inputStream != null) {
 				try (OutputStream output = resp.getOutputStream()) {
@@ -52,45 +49,12 @@ public class DummyApiServlet extends HttpServlet {
 		}
 	}
 
-	private void handleImportDetailsRequest(String requestURI,
-			HttpServletResponse resp) {
-		StringBuilder importJson = new StringBuilder();
-		/*
-		 * { "jobId" : "ABCD-EFGH-IJKL-MNOP", "description" :
-		 * "Simple import to get the system checks started", "date" :
-		 * "2014-09-03T18:25:43.511Z", "status" : "DOWNLOADABLE", "importer":
-		 * "me" }
-		 */
-		importJson.append("{ \"id\" : ");
-		importJson.append(nextId++);
-		importJson.append(", \"jobId\" : \"ABCD-1234-EFGH-1234\"");
-		importJson.append(", \"description\" : \"Details for the import\"");
-		importJson.append(", \"date\" : \"2014-09-03T18:25:43.511Z\"");
-		importJson.append(", \"status\" : \"IN_PROGRESS\"");
-		importJson.append(", \"importer\" : \"me\"");
-		importJson.append(", \"recipient\" : \"me\"");
-		importJson.append(", \"fileCount\" : 4");
-		importJson.append(", \"files\" : []");
-		importJson.append("}");
-		try (OutputStream output = resp.getOutputStream()) {
-			IOUtils.copy(new ByteArrayInputStream(importJson.toString()
-					.getBytes("UTF-8")), output);
-			output.flush();
-		} catch (IOException e) {
-			LOGGER.fatal("Error rendering the import details for {}",
-					requestURI);
-			try {
-				resp.sendError(500, "Rendering of JSON failed.");
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-	}
-
 	private InputStream findCorrectStream(String requestURI) {
 
 		ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+		if (requestURI.contains("/import/")) {
+			return handleImportDetailsRequest(requestURI);
+		}
 		if (requestURI.endsWith("activities")) {
 			return contextClassLoader
 					.getResourceAsStream("/data/activities.json");
@@ -116,5 +80,36 @@ public class DummyApiServlet extends HttpServlet {
 					.getResourceAsStream("/data/versionInfo.json");
 		}
 		return null;
+	}
+
+	private InputStream handleImportDetailsRequest(String requestURI) {
+		StringBuilder importJson = new StringBuilder();
+		/*
+		 * { "jobId" : "ABCD-EFGH-IJKL-MNOP", "description" :
+		 * "Simple import to get the system checks started", "date" :
+		 * "2014-09-03T18:25:43.511Z", "status" : "DOWNLOADABLE", "importer":
+		 * "me" }
+		 */
+		Path requestPath = Paths.get(requestURI);
+		importJson.append("{ \"id\" : ");
+		importJson.append(nextId++);
+		importJson.append(", \"jobId\" : \"");
+		importJson.append(requestPath.getFileName());
+		importJson.append("\"");
+		importJson.append(", \"description\" : \"Details for the import\"");
+		importJson.append(", \"date\" : \"2014-09-03T18:25:43.511Z\"");
+		importJson.append(", \"status\" : \"IN_PROGRESS\"");
+		importJson.append(", \"importer\" : \"me\"");
+		importJson.append(", \"recipient\" : \"me\"");
+		importJson.append(", \"fileCount\" : 4");
+		importJson.append(", \"files\" : []");
+		importJson.append("}");
+		try {
+			return new ByteArrayInputStream(importJson.toString()
+					.getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			LOGGER.error("Unknown encoding for UTF-8 WTF!", e);
+			return null;
+		}
 	}
 }

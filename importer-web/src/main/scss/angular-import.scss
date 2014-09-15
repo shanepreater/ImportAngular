@@ -3,6 +3,7 @@
  **/
 $footerHeight: 30px;
 $activeColor: #428bca;
+$borderColor: #eee;
 $standardMargin: 15px;
 
 @mixin highlight {
@@ -115,6 +116,12 @@ form {
 .downloadable {
 	@include importStatus;
 	background-image: url("./sprites/archive-icon.png");
+}
+
+blockquote {
+	&.criteria {
+		border: 5px solid $borderColor;
+	}
 }
 
 .ng-dirty {

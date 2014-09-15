@@ -5,7 +5,7 @@
 		"description" : "Malware has been discovered in the import",
 		"criteria": {
 			"type": "AND",
-			[
+			"criterion" : [
 				{
 					"property" : "MALWARE_STATUS",
 					"operation" : "contains",
@@ -26,7 +26,7 @@
 		"description" : "Import was not scanned",
 		"criteria": {
 			"type": "AND",
-			[
+			"criterion" : [
 				{
 					"property" : "MALWARE_STATUS",
 					"operation" : "contains",
@@ -36,6 +36,35 @@
 					"property" : "STATUS",
 					"operation" : "contains",
 					"value" : "FINISHED"
+				}
+			]
+		},
+		"informSecurity": true
+	},
+	{
+		"id" : 3,
+		"name" : "Errors in process",
+		"description" : "Import was not scanned",
+		"criteria": {
+			"type": "AND",
+			"criterion" : [
+				{
+					"property" : "MALWARE_STATUS",
+					"operation" : "contains",
+					"value" : "NONE_FOUND"
+				},
+				{
+					"type" : "OR",
+					"criterion" : [
+				{
+					"property" : "STATUS",
+					"operation" : "contains",
+					"value" : "AWAITING_PAYLOAD"
+				},
+				{
+					"property" : "STATUS",
+					"operation" : "contains",
+					"value" : "FAILED"
 				}
 			]
 		},

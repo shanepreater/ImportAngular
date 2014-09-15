@@ -1,5 +1,7 @@
 [
 	{"pageName" : "myImports","pageTitle" : "My Imports","active" : true},
 	{"pageName" : "activities","pageTitle" : "Activities"},
-	{"pageName" : "search","pageTitle" : "Search"}
+	{"pageName" : "criteriaBuilder", "pageTitle" : "Criteria builder"},
+	{"pageName" : "search","pageTitle" : "Search"},
+	{"pageName" : "advancedSearch","pageTitle" : "Advanced search"}
 ]
