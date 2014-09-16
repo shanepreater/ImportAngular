@@ -18,7 +18,7 @@
 		<fieldset class="form-group form-inline">
 			<button type="button" class="form-control" ng-click="addGroup(criteria)">Add group</button>
 			<button type="button" class="form-control" ng-click="addCriterion(criteria)">Add criterion</button>
-			<button type="button" class="form-control" ng-click="removeCriteria(criteria)" ng-if="canDelete(parent)">
+			<button type="button" class="form-control" ng-click="removeCriteria(criteria, parent)" ng-if="canDelete(parent)">
 				<span class="glyphicon glyphicon-remove"></span>
 				<span class="sr-only">Remove</span>
 			</button>

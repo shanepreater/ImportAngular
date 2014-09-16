@@ -1,5 +1,6 @@
 <div>
 <form ng-submit="criteriaBuilderCtrl.saveCriteria()">
+	<pre>{{criteria | json}}</pre>
 	<criteria-group criteria="criteria" read-only="readOnly"></criteria-group>
 	<fieldset class="form-group form-inline">
 		<input type="submit" value="Save" class="form-control">

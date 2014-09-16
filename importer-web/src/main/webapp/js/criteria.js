@@ -100,11 +100,18 @@
 			criteria.criterion.push(criteriaHelper.createNewCriterion());
 		};
 		
-		$scope.removeCriteria = function(criteriaToRemove) {
-			var criterion = $scope.criteria.criterion;
+		var resolveCriteria  = function($scope, parent) {
+			if(parent) {
+				return parent;
+			}
+			return $scope.criteria;
+		};
+		
+		$scope.removeCriteria = function(criteriaToRemove, parent) {
+			var criterion = resolveCriteria($scope, parent).criterion;
 			var elementIndex = criterion.indexOf(criteriaToRemove);
 			if(elementIndex >= 0) {
-				$scope.criteria.criterion = criterion.splice(elementIndex, 1);
+				criterion.splice(elementIndex, 1);
 			} else {
 				throw "Unable to find criteria: " + criteriaToRemove;
 			}
