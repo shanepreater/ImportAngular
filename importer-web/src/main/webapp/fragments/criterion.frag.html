@@ -11,7 +11,7 @@
 	<label for="{{idName}}_operation" class="sr-only">Operation:</label>
 	<select id="{{idName}}_operation" class="form-control" ng-model="criteria.operation">
 		<option label="Select one"></option>
-		<option label="{{operation.name}}" ng-repeat="operation in operations">{{operation.id}}</option>
+		<option label="{{operation.name}}" ng-repeat="operation in operations">{{operation.type}}</option>
 	</select>	
 			
 	<label for="{{idName}}_value" class="sr-only">Value:</label>
