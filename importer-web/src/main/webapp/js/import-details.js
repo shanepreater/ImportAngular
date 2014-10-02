@@ -28,6 +28,10 @@
 	
 	importDetails.controller("ImportDetailsController", ['$http', '$log', '$scope', '$routeParams', function($http, $log, $scope,$routeParams) {
 		$scope.jobId = $routeParams.jobId;
+		
+		$scope.showNFV = function() {
+			$log.info("Sent the import to NFV");
+		};
 	}]);
 
 	var buildBaseIconClasses = function(importJob) {

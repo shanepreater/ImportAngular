@@ -5,7 +5,7 @@
  /**
   * Use these variables for the image urls
   */
-  $clean-file: url("./sprites/64px-ticked-file.f");
+  $clean-file: url("./sprites/64px-ticked-file.png");
   $processing-file: url("./sprites/64px-hourglass-file.png");
   $failed-file: url("./sprites/64px-failed-file.png");
   $issues-file: url("./sprites/64px-file.png");
@@ -28,9 +28,6 @@
 	height: $main-icon-height + 10px;
 	width: $main-icon-width + 10px;
 	position: absolute;
-	padding: 5px;
-		top: 0;
-		left: 0;
 
 	&.clean {
 		background-image: $clean-file;
@@ -54,8 +51,6 @@
 		height: $main-icon-height + 10px;
 		width: $main-icon-width + 10px;
 		position: absolute;
-		top: 0;
-		left: 0;
 		background-color: transparency;
   		
   		&.malware {
@@ -82,5 +77,4 @@
 
 .job-title {
 	vertical-align: middle;
-	min-height: $main-icon-height;
 }

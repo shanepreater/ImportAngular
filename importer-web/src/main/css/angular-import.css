@@ -161,12 +161,9 @@ form .help-block {
   height: 93px;
   width: 74px;
   position: absolute;
-  padding: 5px;
-  top: 0;
-  left: 0;
 }
 .outcome-icon.clean {
-  background-image: url("./sprites/64px-ticked-file.f");
+  background-image: url("./sprites/64px-ticked-file.png");
 }
 .outcome-icon.failed {
   background-image: url("./sprites/64px-failed-file.png");
@@ -183,8 +180,6 @@ form .help-block {
   height: 93px;
   width: 74px;
   position: absolute;
-  top: 0;
-  left: 0;
   background-color: transparency;
 }
 .issue-decorator.malware {
@@ -210,5 +205,4 @@ form .help-block {
 
 .job-title {
   vertical-align: middle;
-  min-height: 83px;
 }
