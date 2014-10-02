@@ -18,7 +18,7 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="importJob in imports | filter:tableHandler.filterText | orderBy:tableHandler.sortField:tableHandler.sortAscending">
-			<td>{{importJob.jobId}}</td>
+			<td><a href ng-click="showImport(importJob.jobId)">{{importJob.jobId}}</a></td>
 			<td>{{importJob.description}}</td>
 			<td ng-class="importJob.statusClass">
 				<span class="sr-only">{{importJob.status}}</span>

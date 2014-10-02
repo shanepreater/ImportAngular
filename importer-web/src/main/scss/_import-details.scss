@@ -14,14 +14,23 @@
   $inactive-threat-decorator: url("./sprites/32px-inactive-eye.png");
   $password-required-decorator: url("./sprites/32px-padlock.png");
   $general-issues-decorator: url("./sprites/32px-exclamation.png");
+  $main-icon-height: 83px;
+  $main-icon-width: 64px;
+  $decorator-icon-height: 32px;
+  $decorator-icon-width: 32px;
   
  /**
   * Define the outcome decorators to use on the main h2 for the import details.
   */
 .outcome-icon {
-	min-height:	83px;
-	min-width: 64px;
 	background-repeat: no-repeat;
+	background-position: center;
+	height: $main-icon-height + 10px;
+	width: $main-icon-width + 10px;
+	position: absolute;
+	padding: 5px;
+		top: 0;
+		left: 0;
 
 	&.clean {
 		background-image: $clean-file;
@@ -38,8 +47,17 @@
   	&.has-issues {
   		background-image: $issues-file;
   	}
-  	
+}
+
   	.issue-decorator {
+		background-repeat: no-repeat;
+		height: $main-icon-height + 10px;
+		width: $main-icon-width + 10px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: transparency;
+  		
   		&.malware {
   			background-image: $malware-decorator;
   		}	
@@ -56,4 +74,13 @@
   			background-image: $general-issues-decorator;
   		}
   	}
+
+.outcome-icon-container {
+	height: $main-icon-height + 10px;
+	width: $main-icon-width + 10px;
+}
+
+.job-title {
+	vertical-align: middle;
+	min-height: $main-icon-height;
 }

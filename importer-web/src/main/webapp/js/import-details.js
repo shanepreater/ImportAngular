@@ -3,17 +3,22 @@
 	//My Imports controller
 	var myImports = angular.module("myImports", []);
 	
-	myImports.controller("MyImportsController", ['$http', '$log', '$location', '$scope', function($http, $log , $location, $scope) {
+	myImports.controller("MyImportsController", ['$location', '$http', '$log', '$location', '$scope', function($location, $http, $log , $location, $scope) {
 		$scope.tableHandler = new TableHandler($scope, $location, "jobId", true);
 		
 		//Get the data
 		$http.get("api/myImports").success(importsHelper.importSummaryLoader($scope));
+		
+		$scope.showImport = function(jobId) {
+			$location.path("import/"+jobId);
+			$location.search({});
+		};
 	}]);
 	
 	//Activities controller
 	var activities = angular.module("activities", []);
 	
-	activities.controller("ActivitiesController", ['$http', '$log', '$location', '$scope', function($http, $log , $location, $scope) {
+	activities.controller("ActivitiesController", ['$location', '$http', '$log', '$location', '$scope', function($location, $http, $log , $location, $scope) {
 		$scope.tableHandler = new TableHandler($scope, $location, "jobId", true);
 		$http.get("api/activities").success(importsHelper.importSummaryLoader($scope));
 	}]);
@@ -21,8 +26,8 @@
 	//The import details controller
 	var importDetails = angular.module("importDetails", []);
 	
-	importDetails.controller("ImportDetailsController", ['$http', '$log', '$scope', function($http, $log, $scope) {
-		$http.get("api")
+	importDetails.controller("ImportDetailsController", ['$http', '$log', '$scope', '$routeParams', function($http, $log, $scope,$routeParams) {
+		$scope.jobId = $routeParams.jobId;
 	}]);
 
 	var buildBaseIconClasses = function(importJob) {

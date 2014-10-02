@@ -28,6 +28,10 @@
 			  templateUrl: 'views/advancedSearch.html',
 			  controller: 'AdvancedSearchController'
 		  }).
+		  when('/import/:jobId', {
+			  templateUrl: 'views/import-details.html',
+			  controller: 'AdvancedSearchController'
+		  }).
 		  when('/treeBrowser', {
 			  templateUrl: 'views/treeBrowser.html',
 			  controller: 'TreeBrowserController'

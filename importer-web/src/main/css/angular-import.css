@@ -146,3 +146,69 @@ form .help-block {
 /**
  * Define the styles for the tree browser widget.
  */
+/**
+ * Define the styles specifically for the import details views.
+ */
+/**
+ * Use these variables for the image urls
+ */
+/**
+ * Define the outcome decorators to use on the main h2 for the import details.
+ */
+.outcome-icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 93px;
+  width: 74px;
+  position: absolute;
+  padding: 5px;
+  top: 0;
+  left: 0;
+}
+.outcome-icon.clean {
+  background-image: url("./sprites/64px-ticked-file.f");
+}
+.outcome-icon.failed {
+  background-image: url("./sprites/64px-failed-file.png");
+}
+.outcome-icon.processing {
+  background-image: url("./sprites/64px-hourglass-file.png");
+}
+.outcome-icon.has-issues {
+  background-image: url("./sprites/64px-file.png");
+}
+
+.issue-decorator {
+  background-repeat: no-repeat;
+  height: 93px;
+  width: 74px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparency;
+}
+.issue-decorator.malware {
+  background-image: url("./sprites/32px-radiation.png");
+}
+.issue-decorator.active-threat {
+  background-image: url("./sprites/32px-active-eye.png");
+}
+.issue-decorator.inactive-threat {
+  background-image: url("./sprites/32px-inactive-eye.png");
+}
+.issue-decorator.password-required {
+  background-image: url("./sprites/32px-padlock.png");
+}
+.issue-decorator.general-issues {
+  background-image: url("./sprites/32px-exclamation.png");
+}
+
+.outcome-icon-container {
+  height: 93px;
+  width: 74px;
+}
+
+.job-title {
+  vertical-align: middle;
+  min-height: 83px;
+}
