@@ -1,9 +1,9 @@
 <div>
-<form ng-submit="criteriaBuilderCtrl.saveCriteria()">
-	<pre>{{criteria | json}}</pre>
-	<criteria-group criteria="criteria" read-only="readOnly"></criteria-group>
+<form name="searchForm" ng-submit="criteriaBuilderCtrl.saveCriteria()" novalidate>
+	<!-- {{criteria | json}} -->
+	<criteria-group criteria="criteria" read-only="readOnly" form="searchForm"></criteria-group>
 	<fieldset class="form-group form-inline">
-		<input type="submit" value="Save" class="form-control">
+		<input type="submit" value="Save" name="saveSearch" class="form-control" ng-disabled="searchForm.$invalid">
 	</fieldset>
 </form>
 </div>

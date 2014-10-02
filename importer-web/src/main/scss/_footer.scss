@@ -1,0 +1,24 @@
+/**
+ *  Define the specific style for the footers.
+ */
+$footerHeight: 30px;
+
+#main-area {
+  margin-bottom: $footerHeight;
+}
+
+#footer {
+  height: $footerHeight;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding-right: $standardMargin;
+  padding-left: $standardMargin;
+  
+  .row {
+    @include roundedCorners(5px);
+    @include highlight;
+    margin: 0;
+  }
+}

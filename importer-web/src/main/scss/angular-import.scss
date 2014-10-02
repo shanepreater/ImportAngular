@@ -1,9 +1,8 @@
 /**
- *  AUTO GENERATED CSS DO NOT MODIFY DIRECTLY.
- **/
-$footerHeight: 30px;
-$activeColor: #428bca;
-$borderColor: #eee;
+ * Define the styles for the site.
+ */
+@import 'colours';
+ 
 $standardMargin: 15px;
 
 @mixin highlight {
@@ -26,31 +25,12 @@ html {
 body {
   /* Margin bottom by footer height */
   height: 100%;
+  font-size: small;
   
   //Define the holder div which is the first (and only) div in the body.
   .container,.container-fluid {
   	min-height: 100%;
   	position: relative;
-  }
-}
-
-#main-area {
-  margin-bottom: $footerHeight;
-}
-
-#footer {
-  height: $footerHeight;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding-right: $standardMargin;
-  padding-left: $standardMargin;
-  
-  .row {
-    @include roundedCorners(5px);
-    @include highlight;
-    margin: 0;
   }
 }
 
@@ -72,12 +52,6 @@ body {
 .table-hover {
 	tbody>tr:hover>td {
 		@include highlight;
-	}
-}
-
-form {
-	input {
-		@include roundedCorners(4px);
 	}
 }
 
@@ -124,12 +98,7 @@ blockquote {
 	}
 }
 
-.ng-dirty {
-	.ng-invalid & {
-		border-color: red;
-	}
-	
-	.ng-valid & {
-		border-color: green;
-	}
-}
+@import 'forms';
+@import 'footer';
+@import 'tree-browser';
+@import 'import-details';

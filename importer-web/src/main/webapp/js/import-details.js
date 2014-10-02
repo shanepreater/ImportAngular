@@ -13,11 +13,85 @@
 	//Activities controller
 	var activities = angular.module("activities", []);
 	
-	
 	activities.controller("ActivitiesController", ['$http', '$log', '$location', '$scope', function($http, $log , $location, $scope) {
 		$scope.tableHandler = new TableHandler($scope, $location, "jobId", true);
 		$http.get("api/activities").success(importsHelper.importSummaryLoader($scope));
 	}]);
+	
+	//The import details controller
+	var importDetails = angular.module("importDetails", []);
+	
+	importDetails.controller("ImportDetailsController", ['$http', '$log', '$scope', function($http, $log, $scope) {
+		$http.get("api")
+	}]);
+
+	var buildBaseIconClasses = function(importJob) {
+		var baseIconClasses = ["outcome-icon"];
+		if(importJob.processingStatus === 'FINISHED') {
+			if(importJob.issueCount === 0) {
+				baseIconClasses.push("clean");
+			} else {
+				baseIconClasses.push("has-issues");
+			}
+		} else if(importJob.processingStatus === 'FAILED') {
+			baseIconClasses.push("failed");
+		} else {
+			baseIconClasses.push("processing");
+		}
+		return baseIconClasses;
+	}
+	
+	var classIsPresent = function(alerts, alertType) {
+		if(alerts.indexOf(alertType) >= 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	function OutcomeAlert(className, description) {
+		this.className = className;
+		this.description = description;
+	};
+	
+	var buildDecoratorObjects = function(importJob) {
+		var decoratorObjects = [];
+		if(classIsPresent(importJob.alerts, 'DEACTIVATED_THREAT')) {
+			decoratorObjects.push(new OutcomeAlert('inactive-threat', 'All threats cleared. You may reprocess this import'));
+		} else {
+			if(classIsPresent(importJob.alerts, 'MALWARE_DECLARED') || classIsPresent(importJob.alerts, 'MALWARE_DETECTED')) {
+				decoratorObjects.push(new OutcomeAlert('malware', "Import contains malware"));
+			}
+			if(classIsPresent(importJob.alerts, 'ACTIVE_THREAT')) {
+				decoratorObjects.push(new OutcomeAlert('active-threat', "Threats have been identified with this import"));
+			}
+			if(classIsPresent(importJob.alerts, 'GENERAL_ISSUES')) {
+				decoratorObjects.push(new OutcomeAlert("general-issues","Issues have been found with this import"));
+			}
+			if(classIsPresent(importJob.alerts, 'PASSWORD_REQUIRED')) {
+				decoratorObjects.push(new OutcomeAlert("password-required", "Some files in the import are password protected"));
+			}
+		}
+		return decoratorObjects;
+	};
+	
+	var outcomeIconController = function($scope, $log) {
+		var importJob = $scope.importJob;
+		$scope.outcomeIconClasses = buildBaseIconClasses(importJob);
+		$scope.decorators = buildDecoratorObjects(importJob);
+	};
+	
+	
+	importDetails.directive("outcome-icon", function(){
+		return {
+			restrict: "E",
+			scope: {
+				importJob : "="
+			},
+			templateUrl: "fragments/outcomeIcon.frag.html",
+			controller: ["$scope", "$log", outcomeIconController],
+			controllerAs: "criteriaBuilderCtrl"
+		};
+	});
 	
 	var importsHelper = {
 		statusClassMap : {

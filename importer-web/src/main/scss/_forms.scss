@@ -1,0 +1,31 @@
+/**
+ * Define the styles for the forms on the site.
+ */
+form {
+	input {
+		@include roundedCorners(4px);
+	}
+	
+	.ng-invalid {
+		border-color: $errorColour;
+	}
+		
+	.ng-valid {
+		border-color: $successColour;
+	}
+	
+	.errorMessage {
+		color: $errorColour;
+		
+		&.ng-invalid {
+			display: inline;
+		}
+		&.ng-valid {
+			display: none;
+		}
+	}
+	
+	.help-block {
+		font-size : 80%;
+	}
+}

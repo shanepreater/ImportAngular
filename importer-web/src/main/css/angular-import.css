@@ -1,6 +1,9 @@
 /**
- *  AUTO GENERATED CSS DO NOT MODIFY DIRECTLY.
- **/
+ * Define the styles for the site.
+ */
+/**
+ * Define the colours to be used by the site.
+ */
 html {
   height: 100%;
 }
@@ -8,34 +11,11 @@ html {
 body {
   /* Margin bottom by footer height */
   height: 100%;
+  font-size: small;
 }
 body .container, body .container-fluid {
   min-height: 100%;
   position: relative;
-}
-
-#main-area {
-  margin-bottom: 30px;
-}
-
-#footer {
-  height: 30px;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-#footer .row {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-  /* future proofing */
-  background-color: #428bca;
-  color: white;
-  margin: 0;
 }
 
 .table thead > tr {
@@ -56,14 +36,6 @@ body .container, body .container-fluid {
 .table-hover tbody > tr:hover > td {
   background-color: #428bca;
   color: white;
-}
-
-form input {
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  border-radius: 4px;
-  /* future proofing */
 }
 
 .quick-search {
@@ -115,9 +87,62 @@ blockquote.criteria {
   border: 5px solid #eeeeee;
 }
 
-.ng-invalid .ng-dirty {
-  border-color: red;
+/**
+ * Define the styles for the forms on the site.
+ */
+form input {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  /* future proofing */
 }
-.ng-valid .ng-dirty {
-  border-color: green;
+form .ng-invalid {
+  border-color: #cc0000;
 }
+form .ng-valid {
+  border-color: #00cc00;
+}
+form .errorMessage {
+  color: #cc0000;
+}
+form .errorMessage.ng-invalid {
+  display: inline;
+}
+form .errorMessage.ng-valid {
+  display: none;
+}
+form .help-block {
+  font-size: 80%;
+}
+
+/**
+ *  Define the specific style for the footers.
+ */
+#main-area {
+  margin-bottom: 30px;
+}
+
+#footer {
+  height: 30px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+#footer .row {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  /* future proofing */
+  background-color: #428bca;
+  color: white;
+  margin: 0;
+}
+
+/**
+ * Define the styles for the tree browser widget.
+ */

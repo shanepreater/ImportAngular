@@ -8,19 +8,43 @@
 	</fieldset>
 	<div ng-repeat="criterion in criteria.criterion">
 		<div ng-if="criterion.type">
-			<criteria-group criteria="criterion" parent="criteria" read-only="readOnly"></criteria-group>
+			<criteria-group criteria="criterion" 
+			                parent="criteria" 
+			                read-only="readOnly" 
+			                form="form">
+			 </criteria-group>
 		</div>
 		<div ng-if="!criterion.type">
-			<criterion criteria="criterion" parent="criteria" read-only="readOnly" id-name="{{criteria.htmlId}}_{{$index}}" on-remove="removeCriteria(criterion)"></criterion>
+			<criterion criteria="criterion" 
+			           parent="criteria" 
+			           read-only="readOnly" 
+			           id-name="{{criteria.htmlId}}_{{$index}}" 
+			           on-remove="removeCriteria(criterion)" 
+			           form="form">
+			</criterion>
 		</div>
 	</div>
 	<div class="pull-right" ng-if="!readOnly">
 		<fieldset class="form-group form-inline">
-			<button type="button" class="form-control" ng-click="addGroup(criteria)">Add group</button>
-			<button type="button" class="form-control" ng-click="addCriterion(criteria)">Add criterion</button>
-			<button type="button" class="form-control" ng-click="removeCriteria(criteria, parent)" ng-if="canDelete(parent)">
-				<span class="glyphicon glyphicon-remove"></span>
-				<span class="sr-only">Remove</span>
+			<button type="button" 
+			        class="form-control" 
+			        name="{{criteria.htmlId}}_add_group" 
+			        ng-click="addGroup(criteria)">
+			          Add group
+			</button>
+			<button type="button" 
+			        class="form-control" 
+			        name="{{criteria.htmlId}}_add_criterion" 
+			        ng-click="addCriterion(criteria)">
+			          Add criterion
+			</button>
+			<button type="button" 
+			        class="form-control" 
+			        name="{{criteria.htmlId}}_remove_group" 
+			        ng-click="removeCriteria(criteria, parent)" 
+			        ng-if="canDelete(parent)">
+					  <span class="glyphicon glyphicon-remove"></span>
+					  <span class="sr-only">Remove</span>
 			</button>
 		</fieldset>
 	</div>

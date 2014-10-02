@@ -1,0 +1,59 @@
+/**
+ * Define the styles specifically for the import details views.
+ */
+ 
+ /**
+  * Use these variables for the image urls
+  */
+  $clean-file: url("./sprites/64px-ticked-file.f");
+  $processing-file: url("./sprites/64px-hourglass-file.png");
+  $failed-file: url("./sprites/64px-failed-file.png");
+  $issues-file: url("./sprites/64px-file.png");
+  $malware-decorator: url("./sprites/32px-radiation.png");
+  $active-threat-decorator: url("./sprites/32px-active-eye.png");
+  $inactive-threat-decorator: url("./sprites/32px-inactive-eye.png");
+  $password-required-decorator: url("./sprites/32px-padlock.png");
+  $general-issues-decorator: url("./sprites/32px-exclamation.png");
+  
+ /**
+  * Define the outcome decorators to use on the main h2 for the import details.
+  */
+.outcome-icon {
+	min-height:	83px;
+	min-width: 64px;
+	background-repeat: no-repeat;
+
+	&.clean {
+		background-image: $clean-file;
+	}
+  	
+	&.failed {
+  		background-image: $failed-file;
+	}
+
+  	&.processing {
+  		background-image: $processing-file;
+  	}
+
+  	&.has-issues {
+  		background-image: $issues-file;
+  	}
+  	
+  	.issue-decorator {
+  		&.malware {
+  			background-image: $malware-decorator;
+  		}	
+  		&.active-threat {
+  			background-image: $active-threat-decorator;
+  		}
+  		&.inactive-threat {
+  			background-image: $inactive-threat-decorator;
+  		}
+  		&.password-required {
+  			background-image: $password-required-decorator;
+  		}
+  		&.general-issues {
+  			background-image: $general-issues-decorator;
+  		}
+  	}
+}

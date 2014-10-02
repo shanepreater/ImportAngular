@@ -1,27 +1,57 @@
 <div ng-if="!queryProperties">
 	<p>Loading the available properties please wait....</p>
 </div>
-<fieldset class="form-group form-inline" ng-if="queryProperties">
-	<label for="{{idName}}_property" class="sr-only">Property:</label>
-	<select id="{{idName}}_property" class="form-control" ng-model="criteria.property" ng-change="propertyChanged()">
+<fieldset class="form-group form-inline" ng-if="queryProperties" ng-class="{ 'has-error' : isInvalid()}">
+	<ng-form name="criterionFormFields">
+	<label for="property" class="sr-only">Property:</label>
+	<select name="property" 
+	        id="{{idName}}_property"
+	        class="form-control"
+	        ng-model="criteria.property" 
+	        ng-change="propertyChanged()" 
+	        required>
 		<option label="Select one"></option>
 		<option ng-repeat="property in queryProperties" label="{{property.name}}">{{property.id}}</option>
 	</select>
 	
-	<label for="{{idName}}_operation" class="sr-only">Operation:</label>
-	<select id="{{idName}}_operation" class="form-control" ng-model="criteria.operation">
+	<label for="operation" class="sr-only">Operation:</label>
+	<select name="operation" 
+	        id="{{idName}}_operation"
+	        class="form-control" 
+	        ng-model="criteria.operation" 
+	        required>
 		<option label="Select one"></option>
 		<option label="{{operation.name}}" ng-repeat="operation in operations">{{operation.type}}</option>
 	</select>	
 			
-	<label for="{{idName}}_value" class="sr-only">Value:</label>
-	<input ng-if="!items" class="form-control" type="text" id="{{idName}}_value" ng-model="criteria.value">
-	<select ng-if="items" class="form-control" ng-model="criteria.value">
+	<label for="value" class="sr-only">Value:</label>
+	<input ng-if="!items" 
+	       class="form-control" 
+	       type="text" 
+	       id="{{idName}}_value" 
+	       name="value" 
+	       ng-model="criteria.value" 
+	       placeholder="Enter the value"
+	       required>
+	<select ng-if="items" 
+	        class="form-control" 
+	        id="{{idName}}_value" 
+	        name="value" 
+	        ng-model="criteria.value" 
+	        required>
 		<option label="Select one"></option>
 		<option ng-repeat="item in items" label="{{item[1]}}">{{item[0]}}</option>
 	</select>
-	<button type="button" class="form-control" ng-click="onRemove(criteria)" ng-if="canDelete(parent)">
+	<button type="button" 
+	        class="form-control" 
+	        name="remove_criterion" 
+	        ng-click="onRemove(criteria)" 
+	        ng-if="canDelete(parent)">
 		<span class="glyphicon glyphicon-remove"></span>
 		<span class="sr-only">Remove</span>
 	</button>
+	<span class="help-block" ng-show="isInvalid()">
+		Choose a property, operation and enter a valid value.
+	</span>
+	</ng-form>
 </fieldset>

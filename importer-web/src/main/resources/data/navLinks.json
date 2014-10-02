@@ -3,5 +3,6 @@
 	{"pageName" : "activities","pageTitle" : "Activities"},
 	{"pageName" : "criteriaBuilder", "pageTitle" : "Criteria builder"},
 	{"pageName" : "search","pageTitle" : "Search"},
-	{"pageName" : "advancedSearch","pageTitle" : "Advanced search"}
+	{"pageName" : "advancedSearch","pageTitle" : "Advanced search"},
+	{"pageName" : "treeBrowser","pageTitle" : "Tree browser"}
 ]

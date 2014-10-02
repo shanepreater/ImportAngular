@@ -91,6 +91,9 @@
 		if(!$scope.readOnly) {
 			$scope.readOnly = false;
 		}
+		else if(!$scope.form) {
+			$scope.readOnly = true;
+		}
 		
 		$scope.addGroup = function(criteria) {
 			criteria.criterion.push(criteriaHelper.createNewGroup());
@@ -167,6 +170,10 @@
 		if(!$scope.idName) {
 			throw "No id name provided to the criterion controller";
 		}
+		
+		if(!$scope.form) {
+			$scope.readOnly = true;
+		}
 
 		//Load the properties model
 		if(!$scope.$root.queryProperties)
@@ -185,6 +192,17 @@
 		};
 		
 		$scope.canDelete = criteriaHelper.canDelete($scope);
+		
+		$scope.isInvalid = function() {
+			var form = $scope.form.criterionFormFields;
+			var propertyInput = form.property;
+			var operatorInput = form.operation;
+			var valueInput = form.value;
+			var valid = propertyInput.$valid &&
+			       operatorInput.$valid && 
+			       valueInput.$valid;
+			return !valid;
+		};
 	};
 	
 	//Define the main Advanced search controller
@@ -219,7 +237,8 @@
 			scope: {
 				readOnly : "=",
 				parent : "=",
-				criteria : "="
+				criteria : "=",
+				form : "="
 				
 			},
 			compile: function(element) {
@@ -240,6 +259,7 @@
 			scope: {
 				readOnly : "=",
 				criteria : "=",
+				form : "=",
 				parent : "=",
 				onRemove : "&", 
 				idName : "@"

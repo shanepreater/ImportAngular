@@ -1,5 +1,5 @@
 (function(){
-	var app = angular.module("importer", ["ngRoute", "navigation", "myImports", "activities", "criteria", "footer"]);
+	var app = angular.module("importer", ["ngRoute", "navigation", "myImports", "activities", "criteria", "treeBrowser", "footer"]);
 	
 	app.config(['$routeProvider', function($routeProvider) {
 	    $routeProvider.
@@ -27,6 +27,10 @@
 		  when('/advancedSearch', {
 			  templateUrl: 'views/advancedSearch.html',
 			  controller: 'AdvancedSearchController'
+		  }).
+		  when('/treeBrowser', {
+			  templateUrl: 'views/treeBrowser.html',
+			  controller: 'TreeBrowserController'
 		  }).
 	      otherwise({
 	        redirectTo: '/myImports'
